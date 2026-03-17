@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background-color: white;
+  color: #222;
+}
+
+/* Navbar styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: palevioletred;
+  padding: 10px 20px;
+  color: black;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-right a {
+  text-decoration: none;
+  color: black;
+  margin-left: 20px;
+  transition: color 0.3s;
+}
+
+.nav-right a:hover {
+  color: #cce0ff; /* lighter blue on hover */
+}
+
+.sign-btn {
+  background-color: #0000;
+  color: #003366;
+  padding: 12px 6px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.sign-btn:hover {
+  background-color: #0000;
+}

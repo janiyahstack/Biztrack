@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard|Biztrack</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <label for="input-file"> Update image</label>
+  <img src="images/profile.png" id="image-pic">
+        <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file">
+
+        <form id="inventoryForm" class="inventory-form">
+        <label> Product name
+            <input type="text" id="productName" required>
+        </label>
+        <label> Quantity
+            <input type="number" required>
+        </label>
+        <label> Class
+            <input type="text" required>
+        </label>
+        <button type="submit" class="submit"> Add</button>
+    </form>
+      </body>
+<script>
+    let imagePic= document.getElementById("image-pic");
+    let inputFile= document.getElementById("input-file");
+
+    inputFile.onchange= function(){
+        imagePic.src= URL.createObjectURL(inputFile.files[0]);
+    }
+</script>
+
+<style>
+body{
+  background-color: aliceblue;
+}
+#image-pic{
+  width: 250px;
+  padding: 20px;
+  margin: 10px;
+  height: 250px;
+}
+#input-file{
+  display: none;
+}
+label{
+margin-top: 15px;
+    color: black;
+    margin-bottom: 15px;
+    justify-content: center;
+    padding: 10px;
+    display: block;
+    background-color: aliceblue;
+    cursor: pointer;
+    height: 30px;
+    margin-left: 120px;
+}
+.inventory-form{
+    box-shadow: 0 2px 5px;
+    border-radius: 10px;
+    padding: 30px 40px;
+    flex-direction: column;
+    display: flex;
+    width: 900vh;
+    height: 70vh;
+    justify-content: center;
+    margin-bottom: 100px;
+    background-color: antiquewhite;
+    margin-left: 150px;
+}
+.inventory-form input {
+        padding: 10px;
+        font-size: 14px;
+        outline: none;
+        transition: border-colour 0.3s;
+    }
+    .submit{
+        padding: 5px;
+        width: 60px;
+        margin-left: 300px;
+        margin-top: 40px;
+        color: white;
+        background-color: black;
+    }
+    
+</style>
+  </html>

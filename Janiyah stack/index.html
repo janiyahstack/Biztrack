@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Biztrack</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+    <body>
+      <div class="sidebar-wrapper">
+          <div class="top-bar">
+            <div class="biztrack"> Biztrack</div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="sidebar">
+    <!-- Sidebar content here -->
+    <h2 <a href="index.html"></a> Dashboard</h2>
+      <a href="#">Report</a>
+      <a href="you.html">Products</a>
+      <a href="#">User</a>
+  </div>
+  <main>
+    <form id="searchForm">
+<div class="search-container">
+            <form id="searchForm">
+                <input type="text" id="searchInput">
+  <button type="submit" class="search-btn"> Search </button> 
+          </div>
+    </form>    
+<div class="giant-card"></div>
+  </main>
+  <table>
+      <tr>
+   <th> Product  name</th>
+   <th>Quantity</th>
+   <th> Date</th>
+   </tr>
+    <tbody id="inventoryBody">
+      <script src="entry.js"></script>
+    </tbody>
+  </table>
+  <div class="user"> 
+  <div class="profile-container">
+    <img src= "default-avatar.png" class="profile-pic" id="avatar">
+    <input type="file" accept="image/jpeg, image/png, image/jpg" hidden>
+  </div>
+  </div>
+  <select id="user">
+    <option value="" disabled selected></option>
+        <option> Settings</option>
+        <option> Log off</option>
+        <option>Account</option>
+      </select>
+  <div class="box"> </div>
+        <div class="modal" id="itemModal"> </div>
+    <div class="modal-content">
+        <a href="inventory.html" class="add-btn" onclick="showForm()">+</a>
+  </div>
+  
+  <script src="app.js"></script>
+</body>
+</html
