@@ -16,10 +16,10 @@
   
       <div class="sidebar">
     <!-- Sidebar content here -->
-    <h2 <a href="index.html"></a> Dashboard</h2>
+    <a href="index.html"></a> Dashboard</h2>
       <a href="#">Report</a>
       <a href="you.html">Products</a>
-      <a href="#">User</a>
+      <a href="#">Clients</a>
   </div>
   <main>
     <form id="searchForm">
@@ -31,16 +31,6 @@
     </form>    
 <div class="giant-card"></div>
   </main>
-  <table>
-      <tr>
-   <th> Product  name</th>
-   <th>Quantity</th>
-   <th> Date</th>
-   </tr>
-    <tbody id="inventoryBody">
-      <script src="entry.js"></script>
-    </tbody>
-  </table>
   <div class="user"> 
   <div class="profile-container">
     <img src= "default-avatar.png" class="profile-pic" id="avatar">
@@ -53,12 +43,63 @@
         <option> Log off</option>
         <option>Account</option>
       </select>
+      <div class="pagewrapper">
   <div class="box"> </div>
         <div class="modal" id="itemModal"> </div>
     <div class="modal-content">
-        <a href="inventory.html" class="add-btn" onclick="showForm()">+</a>
+        <a href="dashboard.html" class="add-btn" onclick="showForm()">+</a>
   </div>
-  
-  <script src="app.js"></script>
-</body>
-</html
+  <div class="container">
+    <div id="data">
+      <input type="text" id="name">
+      <input type="number" id="qty">
+      <button> Add</button>
+    </div>
+  </div>
+  <table>
+    <tr>
+      <th> Product name</th>
+      <th> Qty</th>
+    </tr>
+    </table>
+      </div>
+  <script>
+    btnAdd.addEventListener('click', () => {
+  let name = nameInput.value.trim();
+  let qty = qtyInput.value.trim();
+  const date = new Date().toLocaleDateString('en-GB');
+
+  if (!name || !qty) return;
+
+  let row = table.insertRow();
+  row.innerHTML = `<td>${name}</td><td>${qty}</td><td>${date}</td>`;
+
+  // Save to localStorage
+  let products = JSON.parse(localStorage.getItem('biztrack-products') || '[]');
+  products.push({ name, qty, date });
+  localStorage.setItem('biztrack-products', JSON.stringify(products));
+
+  updateGiantCard(products);
+
+  nameInput.value = '';
+  qtyInput.value = '';
+});
+
+function updateGiantCard(products) {
+  const frequency = {};
+  products.forEach(p => {
+    frequency[p.name] = (frequency[p.name] || 0) + 1;
+  });
+
+  const best = Object.entries(frequency).sort((a, b) => b[1] - a[1])[0];
+
+  const card = document.querySelector('.giant-card');
+  card.innerHTML = `
+    <p style="font-size: 14px; color: #999; margin: 20px 20px 4px;">Best Performing Product</p>
+    <p style="font-size: 32px; font-weight: bold; margin: 0 20px;">${best[0]}</p>
+    <p style="font-size: 14px; color: #666; margin: 6px 20px;">Added ${best[1]} time${best[1] > 1 ? 's' : ''}</p>
+  `;
+}
+  </script>
+    </body>
+</html>
