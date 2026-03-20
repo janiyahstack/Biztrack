@@ -4,44 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard|Biztrack</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <label for="input-file"> Update image</label>
   <img src="images/profile.png" id="image-pic">
         <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file">
 
-        <form id="inventoryForm" class="inventory-form">
+        <form autocomplete="off" onsubmit="onFormSubmit()" class="inventory-form">
         <label> Product name
             <input type="text" id="productName" required>
         </label>
         <label> Quantity
-            <input type="number" required>
+            <input type="number" id="quantity" required>
         </label>
         <label> Class
-            <input type="text" required>
+            <input type="text" id="class"required>
         </label>
-        <button type="submit" class="submit"> Add</button>
+        <label> Price
+            <input type="number" id="price" required>
+        </label>
+        <button type="submit" class="submit"onsubmit="onFormSubmit()" > Add</button>
     </form>
-      </body>
-<script>
-    let imagePic= document.getElementById("image-pic");
-    let inputFile= document.getElementById("input-file");
-
-    inputFile.onchange= function(){
-        imagePic.src= URL.createObjectURL(inputFile.files[0]);
-    }
-</script>
-
+    <table class="update" id="update">
+    <thead>
+      <tr>
+        <th> Product Name</th>
+        <th> Quantity</th>
+        <th> Class</th>
+        <th> Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    </tbody>
+  </table>
 <style>
 body{
   background-color: aliceblue;
 }
 #image-pic{
-  width: 250px;
+  width: 150px;
   padding: 20px;
   margin: 10px;
-  height: 250px;
+  height: 150px;
 }
 #input-file{
   display: none;
@@ -53,21 +58,20 @@ margin-top: 15px;
     justify-content: center;
     padding: 10px;
     display: block;
-    background-color: aliceblue;
     cursor: pointer;
     height: 30px;
     margin-left: 120px;
 }
-.inventory-form{
+.inventory-form {
     box-shadow: 0 2px 5px;
     border-radius: 10px;
     padding: 30px 40px;
     flex-direction: column;
     display: flex;
-    width: 900vh;
-    height: 70vh;
+    width: 60%;
+    height: auto;
     justify-content: center;
-    margin-bottom: 100px;
+    margin-bottom: 20px;
     background-color: antiquewhite;
     margin-left: 150px;
 }
@@ -75,16 +79,52 @@ margin-top: 15px;
         padding: 10px;
         font-size: 14px;
         outline: none;
-        transition: border-colour 0.3s;
+        transition: background-colour 0.3s;
     }
     .submit{
         padding: 5px;
-        width: 60px;
-        margin-left: 300px;
-        margin-top: 40px;
+        width: 70px;
+        margin-left: 30px;
+        margin-top: 0px;
         color: white;
-        background-color: black;
+        background-color: blue;
     }
+   table {
+    margin-top: 20px;
+    background-color: white;
+    width: 60%;
+    margin-left: 150px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
     
 </style>
+<script>
+ function onFormSubmit() {
+    event.preventDefault();
+
+    const name = document.getElementById('productName').value.trim();
+    const qty = document.getElementById('quantity').value.trim();
+    const cls = document.getElementById('class').value.trim();
+    const price = document.getElementById('price').value.trim();
+
+    if (!name || !qty || !cls || !price) return;
+
+    const tbody = document.querySelector('#update tbody');
+    const row = document.createElement('tr');
+    row.innerHTML = `<td>${name}</td><td>${qty}</td><td>${cls}</td><td>${price}</td>`;
+    tbody.appendChild(row);
+
+    document.getElementById('productName').value = '';
+    document.getElementById('quantity').value = '';
+    document.getElementById('class').value = '';
+    document.getElementById('price').value = '';
+  } 
+</script>
+</body>
   </html>
